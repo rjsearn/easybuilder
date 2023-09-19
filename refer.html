@@ -9,6 +9,10 @@
         }
     </style>
 </head>
+
+
+
+
 <body>
     <button id="button1">ClickEngine</button>
     <button id="button2">EzClix</button>
@@ -64,6 +68,7 @@
     
 
 
+
     <input type="text" id="input1" placeholder="Your ClickEngine Link">
     <button id="updateButton1">Update</button>
     <br><br>
@@ -80,7 +85,7 @@
     <button id="updateButton4">Update</button>
     <br><br>
 
-    <input type="text" id="output" value="" readonly>
+    <input type="text" id="output" value="https://rjsearn.github.io/easybuilder/refer?CEG=o2/a/pbyg3j/0&EZC=o2/a/ht2pjj/0&TBP=o2/a/czl1tv/0&CTC=o2/a/f5xqc8/0" readonly>
     <button id="copyButton">Copy</button>
 
     <script>
@@ -101,7 +106,9 @@
             const finalInput4 = input4 || defaultInput4;
 
             const finalURL = `https://rjsearn.github.io/easybuilder/refer?CEG=${finalInput1}&EZC=${finalInput2}&TBP=${finalInput3}&CTC=${finalInput4}`;
-            document.getElementById("output").value = finalURL;
+            const output = document.getElementById("output");
+            output.value = finalURL;
+            output.style.width = (finalURL.length * 8) + "px"; // Adjust width based on content length
         }
 
         function copyOutput() {
@@ -116,16 +123,9 @@
         document.getElementById("updateButton4").addEventListener("click", updateOutput);
 
         document.getElementById("copyButton").addEventListener("click", copyOutput);
-
-        // Initialize the input boxes with default values
-        document.getElementById("input1").value = "https://warriorplus.com/o2/a/pbyg3j/0";
-        document.getElementById("input2").value = "https://warriorplus.com/o2/a/ht2pjj/0";
-        document.getElementById("input3").value = "https://warriorplus.com/o2/a/czl1tv/0";
-        document.getElementById("input4").value = "https://warriorplus.com/o2/a/f5xqc8/0";
-
-        // Call updateOutput initially to set the default output
-        updateOutput();
     </script>
+
+
 
 </body>
 </html>
