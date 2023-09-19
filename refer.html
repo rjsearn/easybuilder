@@ -2,6 +2,12 @@
 <html>
 <head>
     <title>Button Links</title>
+<style>
+        #output {
+            background-color: pink;
+            width: auto;
+        }
+    </style>
 </head>
 <body>
     <button id="button1">ClickEngine</button>
@@ -51,7 +57,12 @@
     </script>
 
 
-    <br><br><br>
+   
+
+ <br><br><br>
+
+    
+
 
     <input type="text" id="input1" placeholder="Your ClickEngine Link">
     <button id="updateButton1">Update</button>
@@ -69,7 +80,7 @@
     <button id="updateButton4">Update</button>
     <br><br>
 
-    <input type="text" id="output" value="https://rjsearn.github.io/easybuilder/refer?CEG=input1&EZC=input2&TBP=input3&CTC=input4" readonly>
+    <input type="text" id="output" value="" readonly>
     <button id="copyButton">Copy</button>
 
     <script>
@@ -79,7 +90,17 @@
             const input3 = document.getElementById("input3").value.replace("https://warriorplus.com/", "");
             const input4 = document.getElementById("input4").value.replace("https://warriorplus.com/", "");
 
-            const finalURL = `https://rjsearn.github.io/easybuilder/refer?CEG=${input1}&EZC=${input2}&TBP=${input3}&CTC=${input4}`;
+            const defaultInput1 = "o2/a/pbyg3j/0";
+            const defaultInput2 = "o2/a/ht2pjj/0";
+            const defaultInput3 = "o2/a/czl1tv/0";
+            const defaultInput4 = "o2/a/f5xqc8/0";
+
+            const finalInput1 = input1 || defaultInput1;
+            const finalInput2 = input2 || defaultInput2;
+            const finalInput3 = input3 || defaultInput3;
+            const finalInput4 = input4 || defaultInput4;
+
+            const finalURL = `https://rjsearn.github.io/easybuilder/refer?CEG=${finalInput1}&EZC=${finalInput2}&TBP=${finalInput3}&CTC=${finalInput4}`;
             document.getElementById("output").value = finalURL;
         }
 
@@ -95,6 +116,15 @@
         document.getElementById("updateButton4").addEventListener("click", updateOutput);
 
         document.getElementById("copyButton").addEventListener("click", copyOutput);
+
+        // Initialize the input boxes with default values
+        document.getElementById("input1").value = "https://warriorplus.com/o2/a/pbyg3j/0";
+        document.getElementById("input2").value = "https://warriorplus.com/o2/a/ht2pjj/0";
+        document.getElementById("input3").value = "https://warriorplus.com/o2/a/czl1tv/0";
+        document.getElementById("input4").value = "https://warriorplus.com/o2/a/f5xqc8/0";
+
+        // Call updateOutput initially to set the default output
+        updateOutput();
     </script>
 
 </body>
