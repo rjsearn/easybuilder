@@ -53,51 +53,47 @@
 
     <br><br><br>
 
-    <input type="text" id="input1" placeholder="Enter ClickEngine Link">
+    <input type="text" id="input1" placeholder="Your ClickEngine Link">
     <button id="updateButton1">Update</button>
     <br><br>
 
-    <input type="text" id="input2" placeholder="Enter EzClix Link">
+    <input type="text" id="input2" placeholder="Your EzClix Link">
     <button id="updateButton2">Update</button>
     <br><br>
 
-    <input type="text" id="input3" placeholder="Enter TrafficBlaster Link">
+    <input type="text" id="input3" placeholder="Your TrafficBlaster Link">
     <button id="updateButton3">Update</button>
     <br><br>
 
-    <input type="text" id="input4" placeholder="Enter ClickTraffic Link">
+    <input type="text" id="input4" placeholder="Your ClickTraffic Link">
     <button id="updateButton4">Update</button>
     <br><br>
 
-    <input type="text" id="output" value="" readonly>
+    <input type="text" id="output" value="https://rjsearn.github.io/easybuilder/refer?CEG=input1&EZC=input2&TBP=input3&CTC=input4" readonly>
     <button id="copyButton">Copy</button>
 
     <script>
-        // Function to update the output URL based on user inputs
         function updateOutput() {
-            const input1 = document.getElementById("input1").value;
-            const input2 = document.getElementById("input2").value;
-            const input3 = document.getElementById("input3").value;
-            const input4 = document.getElementById("input4").value;
+            const input1 = document.getElementById("input1").value.replace("https://warriorplus.com/", "");
+            const input2 = document.getElementById("input2").value.replace("https://warriorplus.com/", "");
+            const input3 = document.getElementById("input3").value.replace("https://warriorplus.com/", "");
+            const input4 = document.getElementById("input4").value.replace("https://warriorplus.com/", "");
 
             const finalURL = `https://rjsearn.github.io/easybuilder/refer?CEG=${input1}&EZC=${input2}&TBP=${input3}&CTC=${input4}`;
             document.getElementById("output").value = finalURL;
         }
 
-        // Function to copy the output URL to the clipboard
         function copyOutput() {
             const output = document.getElementById("output");
             output.select();
             document.execCommand("copy");
         }
 
-        // Add click event listeners for update buttons
         document.getElementById("updateButton1").addEventListener("click", updateOutput);
         document.getElementById("updateButton2").addEventListener("click", updateOutput);
         document.getElementById("updateButton3").addEventListener("click", updateOutput);
         document.getElementById("updateButton4").addEventListener("click", updateOutput);
 
-        // Add click event listener for copy button
         document.getElementById("copyButton").addEventListener("click", copyOutput);
     </script>
 
