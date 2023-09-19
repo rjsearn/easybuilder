@@ -10,7 +10,9 @@
     <button id="button4">ClickTraffic</button>
 
     <script>
-        const readyURL = "https://rjsearn.github.io/easybuilder/refer?CEG=code1&EZC=code2&TBP=code3&CTC=code4";
+        const readyURL = window.location.href;
+        const urlSearchParams = new URLSearchParams(readyURL.substring(readyURL.indexOf('?')));
+        const params = Object.fromEntries(urlSearchParams.entries());
 
         // Function to open a URL in a new tab
         function openInNewTab(url) {
@@ -18,29 +20,33 @@
             newTab.focus();
         }
 
-        // Get the query parameters from the readyURL
-        const urlSearchParams = new URLSearchParams(readyURL.substring(readyURL.indexOf('?')));
-        const params = Object.fromEntries(urlSearchParams.entries());
-
         // Set the click handlers for each button
         document.getElementById("button1").addEventListener("click", () => {
             const code1 = params["CEG"];
-            openInNewTab(`https://warriorplus.com/${code1}`);
+            if (code1) {
+                openInNewTab(`https://warriorplus.com/${code1}`);
+            }
         });
 
         document.getElementById("button2").addEventListener("click", () => {
             const code2 = params["EZC"];
-            openInNewTab(`https://warriorplus.com/${code2}`);
+            if (code2) {
+                openInNewTab(`https://warriorplus.com/${code2}`);
+            }
         });
 
         document.getElementById("button3").addEventListener("click", () => {
             const code3 = params["TBP"];
-            openInNewTab(`https://warriorplus.com/${code3}`);
+            if (code3) {
+                openInNewTab(`https://warriorplus.com/${code3}`);
+            }
         });
 
         document.getElementById("button4").addEventListener("click", () => {
             const code4 = params["CTC"];
-            openInNewTab(`https://warriorplus.com/${code4}`);
+            if (code4) {
+                openInNewTab(`https://warriorplus.com/${code4}`);
+            }
         });
     </script>
 </body>
