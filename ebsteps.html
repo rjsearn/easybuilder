@@ -2,143 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Rotator</title>
+    <title>Image Viewer</title>
     <style>
         body {
-            display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      flex-direction: column;
-      background-color: #FFFFF1; /* Gray background color */
-    }
-
-       #image-container {
-      text-align: center;
-      position: relative;
-    }
-       #image-container img {
-      max-width: 100%;
-      max-height: 100%;
-      display: block;
-      margin: auto;
-    }
-
- #image-frame {
-            width: 720px;
-      height: 420px;
-      overflow: hidden;
-      border: 1px solid #ccc; /* 1px light grey border */
-      margin-bottom: 20px;
-      position: relative;
-      padding: 7px;
-      background-color: #FFFFF1;
-      border-radius: 15px;
-      box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
         }
-   
-.wrap {
-    margin:2px auto 0;
-    max-width: 270px;
-}
-
-.telegram {
-  margin-bottom: 10px;
-}
-.telegram a {
-  display: block;
-  background-color: #E9967A;
-  border-radius: 7px;
-  overflow: hidden;
-  position: relative;
+        #helpContainer {
+            background-color: #ffc373;
+            color: white;
+            padding: 5px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+        #imageContainer {
+            width: 100%;
+            height: 412px;
+            overflow: hidden;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+        img {
+            max-width: 98%;
+            max-height: 98%;
+            display: block;
+            margin: 1% auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 10px;
+        }
+        #linkContainer {
+            position: absolute;
+            bottom: 7%;
+            width: 100%;
+            text-align: center;
+        }
+        a:link {
+  color: hotpink;
+  background-color: #ffc373;
+  color: white;
+  padding: 2px 45px;
+  border-radius: 10px;
+  text-align: center;
   text-decoration: none;
+  display: inline-block;
 }
-
-.telegram .tg-text {
-  overflow: hidden;
-  color: #fff;
-  font-size: 20px;
-  line-height: 18px;
-  font-weight: bold;
-  padding: 5px 5px;
-  position: relative;
-  z-index: 10;
-  text-shadow: #FFBF00;
-}
-
-
-
-        #controls {
+        
+        #navigationContainer {
             display: flex;
-      max-width: 100%;
-      justify-content: space-between;
-      position: relative;
+            justify-content: space-between;
+            margin-top: 10px;
         }
-
-
-    #prevBtn,
-    #nextBtn {
-      padding: 10px;
-      font-size: 15px;
-      font: bold;
-      border-radius: 7px;
-      cursor: pointer;
-      
-    }
-
-    #prevBtn {
-      background-color: #f44336;
-      color: #fff;
-      border: none;
-      border: 1px solid #FFFFFF;
-      box-shadow: 1px 1px 0px  	#F5F5F5;
-    }
-
-    #nextBtn {
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border: 1px solid #FFFFFF;
-      box-shadow: 1px 1px 0px  	#F5F5F5;
-    }
-
-
+        #prevBtn, #nextBtn {
+            display: none;
+            padding: 7px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        #prevBtn {
+            background-color: #FF0000;
+            color: white;
+        }
+        #nextBtn {
+            background-color: #008000;
+            color: white;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
-<div id="image-container">
 
-<div class="wrap">
-<div class="telegram">
-  <a href="https://t.me/+SqKLdNlUQckxNzg1" target="_blank">
-    <div class="tg-icon"></div>
-    <div class="tg-text">Contact for any HELP</div>
- </a>
-</div>
+<div id="helpContainer" onclick="openTelegram()">
+    Contact for help
 </div>
 
-<br>
-
-<div id="image-frame">
-    <!-- Images will be dynamically loaded here -->
+<div id="imageContainer">
+    <img id="displayedImage" src="" alt="Image">
+    <div id="linkContainer">
+        <a id="specialLink" href="#" target="_blank"></a>
+    </div>
 </div>
 
-<div id="controls">
-    <button onclick="prevImage()" id="prevBtn" style="display: none">PREVIOUS</button>
-    <button onclick="nextImage()" id="nextBtn" >NEXT SCREEN</button>
-</div>
-
+<div id="navigationContainer">
+    <button id="prevBtn" onclick="showPrevious()">Previous</button>
+    <button id="nextBtn" onclick="showNext()">Next Page</button>
 </div>
 
 <script>
-    const imageLinks = [
+    var imageLinks = [
 "https://i.imgur.com/00fuqu1.png",
-"https://i.imgur.com/RPAgvmK.png",
+"https://i.imgur.com/4VR7EzA.png",
 "https://i.imgur.com/Xr0zeHa.png",
-"https://i.imgur.com/cOruvZY.png",
+"https://i.imgur.com/VgvPhWq.png",
 "https://i.imgur.com/LbnpjwK.png",
 "https://i.imgur.com/6LPnBYO.png",
 "https://i.imgur.com/M4tjdab.png",
@@ -151,47 +120,72 @@
 "https://i.imgur.com/QTMRdfE.png",
 "https://i.imgur.com/0E1dJ8w.png",
 "https://i.imgur.com/lUitC3E.png",
-"https://i.imgur.com/3QgTJIS.png",
-"https://i.imgur.com/kQYJWGD.png",
+"https://i.imgur.com/NwQkhUR.png",
 "https://i.imgur.com/KdNsJcD.png",
 "https://i.imgur.com/DRVQ655.png",
 "https://i.imgur.com/oqmfjSN.png",
-"https://i.imgur.com/ATUIkwv.png",
-"https://i.imgur.com/ATUIkwv.png",
+"https://i.imgur.com/VFem3iV.png",
 "https://i.imgur.com/q8B8aaN.png",
 "https://i.imgur.com/HtKpffB.png",
-"https://i.imgur.com/X1bS2ra.png",
-""
+"https://i.imgur.com/X1bS2ra.png"
     ];
 
-    let currentIndex = 0;
-    const imageFrame = document.getElementById('image-frame');
-    const prevBtn = document.getElementById('prevBtn');
+    var specialLink = document.getElementById("specialLink");
+    var prevBtn = document.getElementById("prevBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    var currentImageIndex = 0;
 
-    function showImage(index) {
-        imageFrame.innerHTML = `<img src="${imageLinks[index]}" alt="Image">`;
-        prevBtn.style.display = index > 0 ? 'block' : 'none';
+    function updateImage() {
+        var displayedImage = document.getElementById("displayedImage");
+        displayedImage.src = imageLinks[currentImageIndex];
+
+        // Check for special links
+        if (currentImageIndex === 1) {
+            specialLink.href = "https://warriorplus.com";
+            specialLink.textContent = "Join WarriorPlus Here";
+            specialLink.style.display = "inline-block";
+        } else if (currentImageIndex === 4) {
+            specialLink.href = "https://llpgpro.com/EasyBuilderPage3";
+            specialLink.textContent = "See Both EasyBuilders Here";
+            specialLink.style.display = "inline-block";
+        } else if (currentImageIndex === 20) {
+            specialLink.href = "https://hitsconnect.com/?rid=59520";
+            specialLink.textContent = "Join Hitsconnect.com Here";
+            specialLink.style.display = "inline-block";
+        }else {
+            specialLink.href = "#";
+            specialLink.textContent = "";
+            specialLink.style.display = "none";
+        }
+
+        // Show/hide Previous and Next buttons based on the current image index
+        prevBtn.style.display = currentImageIndex > 0 ? "inline-block" : "none";
+        nextBtn.style.display = "inline-block";
     }
 
-    function prevImage() {
-        currentIndex = Math.max(0, currentIndex - 1);
-        showImage(currentIndex);
-    }
-
-    function nextImage() {
-        currentIndex = Math.min(imageLinks.length - 1, currentIndex + 1);
-        showImage(currentIndex);
-
-        if (currentIndex === imageLinks.length - 1) {
-            // Open the URL in a new tab when on the last screen
-            window.location.href = "https://llpgpro.com/EasyBuilderPage3";
+    function showNext() {
+        if (currentImageIndex === imageLinks.length - 1) {
+            window.open("https://llpgpro.com/EasyBuilderPage2", "_blank");
+        } else if (currentImageIndex < imageLinks.length - 1) {
+            currentImageIndex++;
+            updateImage();
         }
     }
 
-    showImage(currentIndex);  // Show the initial image
+    function showPrevious() {
+        if (currentImageIndex > 0) {
+            currentImageIndex--;
+            updateImage();
+        }
+    }
 
+    function openTelegram() {
+        window.open("https://t.me/+SqKLdNlUQckxNzg1", "_blank");
+    }
+
+    // Initial load
+    updateImage();
 </script>
 
 </body>
 </html>
-
